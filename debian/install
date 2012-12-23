@@ -1,0 +1,3 @@
+bin/lib*.so /usr/lib
+bin/lib*.so.* /usr/lib
+bin/Pokemon-Online /usr/games

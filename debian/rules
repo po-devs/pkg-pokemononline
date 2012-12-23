@@ -3,6 +3,9 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/qmake.mk
 
+#DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#include /usr/share/dpkg/buildflags.mk
+
 QMAKE = qmake-qt4
 
 
