@@ -1,0 +1,2 @@
+version=3
+https://github.com/po-devs/pokemon-online/tags .*/(\d.*)\.(?:tgz|tar\.(?:gz|bz2|xz))
