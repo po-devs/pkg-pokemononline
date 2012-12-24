@@ -5,7 +5,7 @@ Maintainer: Fabio Fantoni <fantonifabio@tiscali.it>
 Build-Depends: cdbs, dpkg-dev (>= 1.16.1),
  debhelper (>= 9),
  qt4-qmake,
- libqt4-dev (>= 4.5),
+ libqt4-dev (>= 4.8),
  libzip-dev,
  libphonon-dev,
  libqt4-opengl-dev,
@@ -15,10 +15,12 @@ Homepage: http://pokemon-online.eu
 
 Package: pokemon-online
 Architecture: any
-Depends: ${shlibs:Depends}, 
-         ${misc:Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libqt4-declarative-shaders,
+         libqt4-declarative-particles
 Description: Pokémon battle simulator
- Pokémon Online is the most popular, accurate, and complete Pokémon battle simulator out there. 
- Available in 11 languages with over 100 themes, it hosts more than a million battles per month. 
+ Pokémon Online is the most popular, accurate, and complete Pokémon battle simulator out there.
+ Available in 11 languages with over 100 themes, it hosts more than a million battles per month.
  Experience competitive battles across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2) 
  in real time with trainers from around the world!
