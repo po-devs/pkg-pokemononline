@@ -1,0 +1,13 @@
+Description: Fix data path for deb build
+Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
+--- a/src/Teambuilder/Teambuilder.pro
++++ b/src/Teambuilder/Teambuilder.pro
+@@ -204,7 +204,7 @@
+ }
+ 
+ CONFIG(debian) {
+-    DEFINES += -DPO_DATA_REPO="/usr/shared/games/pokemon-online/"
++    DEFINES += -DPO_DATA_REPO="/usr/share/games/pokemon-online/"
+ }
+ 
+ 
