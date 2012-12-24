@@ -19,7 +19,7 @@ Depends: ${shlibs:Depends},
          ${misc:Depends},
          libqt4-declarative-shaders,
          libqt4-declarative-particles,
-         pokemon-online-data
+         pokemon-online-data (= ${source:Version})
 Provides: pokemon-online
 Description: Pokémon battle simulator (client)
  Pokémon Online is the most popular, accurate, and complete Pokémon battle
@@ -41,3 +41,17 @@ Description: Pokémon battle simulator (game data)
  in real time with trainers from around the world!
  .
  These are the common data files for Pokémon Online.
+
+Package: pokemon-online-client-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: pokemon-online-client (= ${binary:Version}), ${misc:Depends}
+Description: Pokémon battle simulator (client debug)
+ Pokémon Online is the most popular, accurate, and complete Pokémon battle
+ simulator out there. Available in 11 languages with over 100 themes, it
+ hosts more than a million battles per month. Experience competitive battles
+ across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2)
+ in real time with trainers from around the world!
+ .
+ This package contains the debugging symbols.

@@ -8,4 +8,7 @@ include /usr/share/cdbs/1/class/qmake.mk
 
 QMAKE = qmake-qt4
 
+override_dh_strip:
+ 	dh_strip -p pokemon-online-client --dbg-package=pokemon-online-client-dbg
+
 
