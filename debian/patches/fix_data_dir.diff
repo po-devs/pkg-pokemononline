@@ -7,7 +7,7 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
  
  CONFIG(debian) {
 -    DEFINES += -DPO_DATA_REPO="/usr/shared/games/pokemon-online/"
-+    DEFINES += -DPO_DATA_REPO="/usr/share/games/pokemon-online/"
++    DEFINES += PO_DATA_REPO="/usr/share/games/pokemon-online/"
  }
  
  
