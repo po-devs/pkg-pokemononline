@@ -11,15 +11,26 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
  }
  
  
-
 --- a/src/Teambuilder/main.cpp
 +++ b/src/Teambuilder/main.cpp
-@@ -67,7 +67,7 @@
+@@ -67,7 +67,8 @@
      CFRelease(pluginRef);
      CFRelease(macPath);
  #elif defined(PO_DATA_REPO)
 -    QDir::setCurrent(PO_DATA_REPO);
 +    QDir::setCurrent( "/usr/share/games/pokemon-online" );
++    QCoreApplication::addLibraryPath ( "/usr/lib/pokemon-online" );
  #endif
  
      bool quit = false;
+--- a/src/Teambuilder/pluginmanager.cpp
++++ b/src/Teambuilder/pluginmanager.cpp
+@@ -216,7 +216,7 @@
+     QFileDialog *fd = new QFileDialog(this);
+     fd->setAttribute(Qt::WA_DeleteOnClose, true);
+     fd->setFileMode(QFileDialog::ExistingFile);
+-    fd->setDirectory("myplugins");
++    fd->setDirectory("/usr/lib/pokemon-online/plugins");
+     fd->show();
+ 
+     connect(fd, SIGNAL(fileSelected(QString)), this, SLOT(addPlugin(QString)));
