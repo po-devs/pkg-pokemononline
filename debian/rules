@@ -9,8 +9,10 @@ include /usr/share/cdbs/1/class/qmake.mk
 
 QMAKE = qmake-qt4
 DEB_QMAKE_CONFIG_VAL += debian
+DEB_QMAKE_CONFIG_VAL += po_clientplugins
 
 override_dh_strip:
  	dh_strip -p pokemon-online-client --dbg-package=pokemon-online-client-dbg
+        dh_strip -p pokemon-online-client-plugins --dbg-package=pokemon-online-client-plugins-dbg
 
 

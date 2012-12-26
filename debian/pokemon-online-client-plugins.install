@@ -1,0 +1,2 @@
+bin/myplugins/lib*.so /usr/share/games/pokemon-online/myplugins
+bin/myplugins/lib*.so.* /usr/share/games/pokemon-online/myplugins

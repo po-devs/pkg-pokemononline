@@ -2,15 +2,17 @@ Source: pokemon-online
 Section: games
 Priority: optional
 Maintainer: Fabio Fantoni <fantonifabio@tiscali.it>
-Build-Depends: cdbs, dpkg-dev (>= 1.16.1),
- debhelper (>= 9),
- quilt,
- qt4-qmake,
- libqt4-dev (>= 4.8),
- libzip-dev,
- libphonon-dev,
- libqt4-opengl-dev,
- g++ (>= 4.5)
+Build-Depends: dpkg-dev (>= 1.16.1),
+               debhelper (>= 9),
+               cdbs,
+               quilt,
+               qt4-qmake,
+               libqt4-dev (>= 4.8),
+               libzip-dev,
+               libphonon-dev,
+               libqt4-opengl-dev,
+               g++ (>= 4.5),
+               libqrencode-dev
 Standards-Version: 3.9.4
 Homepage: http://pokemon-online.eu
 
@@ -21,6 +23,7 @@ Depends: ${shlibs:Depends},
          libqt4-declarative-shaders,
          libqt4-declarative-particles,
          pokemon-online-data (= ${source:Version})
+Suggests: pokemon-online-client-plugins
 Provides: pokemon-online
 Description: Pokémon battle simulator (client)
  Pokémon Online is the most popular, accurate, and complete Pokémon battle
@@ -47,7 +50,8 @@ Package: pokemon-online-client-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: pokemon-online-client (= ${binary:Version}), ${misc:Depends}
+Depends: pokemon-online-client (= ${binary:Version}),
+         ${misc:Depends}
 Description: Pokémon battle simulator (client debug)
  Pokémon Online is the most popular, accurate, and complete Pokémon battle
  simulator out there. Available in 11 languages with over 100 themes, it
@@ -55,4 +59,33 @@ Description: Pokémon battle simulator (client debug)
  across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2)
  in real time with trainers from around the world!
  .
- This package contains the debugging symbols.
+ This package contains the debugging symbols for the client.
+
+Package: pokemon-online-client-plugins
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         pokemon-online-client (= ${source:Version})
+Description: Pokémon battle simulator (client plugins)
+ Pokémon Online is the most popular, accurate, and complete Pokémon battle
+ simulator out there. Available in 11 languages with over 100 themes, it
+ hosts more than a million battles per month. Experience competitive battles
+ across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2)
+ in real time with trainers from around the world!
+ .
+ These are the Pokémon Online client plugins.
+
+Package: pokemon-online-client-plugins-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: pokemon-online-client-plugins (= ${binary:Version}), 
+         ${misc:Depends}
+Description: Pokémon battle simulator (client plugins debug)
+ Pokémon Online is the most popular, accurate, and complete Pokémon battle
+ simulator out there. Available in 11 languages with over 100 themes, it
+ hosts more than a million battles per month. Experience competitive battles
+ across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2)
+ in real time with trainers from around the world!
+ .
+ This package contains the debugging symbols for the client plugins.
