@@ -1,14 +1,21 @@
 #!/usr/bin/make -f
 
 include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include /usr/share/cdbs/1/class/qmake.mk
 
 #DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#QMAKE_LFLAGS_SHLIB = -W1, -rpath=/usr/lib/pokemon-online
 #include /usr/share/dpkg/buildflags.mk
 
 QMAKE = qmake-qt4
+DEB_QMAKE_CONFIG_VAL += debian
+DEB_QMAKE_CONFIG_VAL += po_clientplugins
+
+#LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):/usr/lib/pokemon-online
 
 override_dh_strip:
  	dh_strip -p pokemon-online-client --dbg-package=pokemon-online-client-dbg
+        dh_strip -p pokemon-online-client-plugins --dbg-package=pokemon-online-client-plugins-dbg
 
 
