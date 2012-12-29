@@ -9,7 +9,7 @@ include /usr/share/cdbs/1/class/qmake.mk
 #include /usr/share/dpkg/buildflags.mk
 
 QMAKE = qmake-qt4
-DEB_QMAKE_CONFIG_VAL += debian
+DEB_QMAKE_CONFIG_VAL += debian_package
 DEB_QMAKE_CONFIG_VAL += po_clientplugins
 
 #LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):/usr/lib/pokemon-online
