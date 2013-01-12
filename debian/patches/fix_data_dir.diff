@@ -2,12 +2,12 @@ Description: Fix data path for deb package build
 Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
 --- a/src/Teambuilder/Teambuilder.pro
 +++ b/src/Teambuilder/Teambuilder.pro
-@@ -203,8 +203,8 @@
+@@ -204,8 +204,8 @@
     QMAKE_POST_LINK += macdeployqt $${DESTDIR}/$${TARGET}.app
  }
  
 -CONFIG(debian) {
--    DEFINES += -DPO_DATA_REPO="/usr/shared/games/pokemon-online/"
+-    DEFINES += PO_DATA_REPO=\"/usr/share/games/pokemon-online/\"
 +CONFIG(debian_package) {
 +    DEFINES += DEB_PKG
  }
@@ -29,7 +29,7 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
      bool quit = false;
 --- a/src/Teambuilder/pluginmanager.cpp
 +++ b/src/Teambuilder/pluginmanager.cpp
-@@ -216,7 +216,11 @@
+@@ -257,7 +257,11 @@
      QFileDialog *fd = new QFileDialog(this);
      fd->setAttribute(Qt::WA_DeleteOnClose, true);
      fd->setFileMode(QFileDialog::ExistingFile);
