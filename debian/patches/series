@@ -1,2 +1,3 @@
 fix_data_dir.diff
 fix_smogon_plugin.diff
+disable_qtwebsocket.diff

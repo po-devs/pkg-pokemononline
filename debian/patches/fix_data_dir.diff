@@ -41,3 +41,15 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
      fd->show();
  
      connect(fd, SIGNAL(fileSelected(QString)), this, SLOT(addPlugin(QString)));
+--- a/src/Server/Server.pro
++++ b/src/Server/Server.pro
+@@ -5,7 +5,8 @@
+     script \
+     xml \
+     sql
+-TARGET = Server
++CONFIG(debian_package): TARGET = Pokemon-Online-Server
++!CONFIG(debian_package): TARGET = Server
+ DESTDIR = ../../bin
+ TEMPLATE = app
+ SOURCES += main.cpp \

@@ -1,0 +1,26 @@
+Description: Disabled RelayStation and WebServerPlugin for now.
+Them require QtWebsocket beta not packaged and modified locally.
+Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
+--- a/PokemonOnline.pro
++++ b/PokemonOnline.pro
+@@ -55,16 +55,16 @@
+ 
+ CONFIG(po_server) {
+     SUBDIRS += src/Server \
+-            src/QJson \
+-            src/RelayStation
++#            src/QJson \
++#            src/RelayStation
+ }
+ 
+ CONFIG(po_serverplugins) {
+     SUBDIRS += src/UsageStatistics \
+                src/StatsExtracter \
+                src/BattleLogs \
+-               src/QtWebsocket \ #git://gitorious.org/qtwebsocket/qtwebsocket.git
+-               src/WebServerPlugin
++#               src/QtWebsocket \ #git://gitorious.org/qtwebsocket/qtwebsocket.git
++#               src/WebServerPlugin
+ }
+ 
+ CONFIG(po_registry) {
