@@ -53,3 +53,17 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
  DESTDIR = ../../bin
  TEMPLATE = app
  SOURCES += main.cpp \
+--- a/src/Server/main.cpp
++++ b/src/Server/main.cpp
+@@ -51,6 +51,11 @@
+ #else
+     //set_terminate( stacktrace );
+ #endif
++#if defined(DEB_PKG)
++    QDir d(QDir::homePath());
++    d.mkdir(".po-server");
++    QDir::setCurrent( QDir::homePath() + "/.po-server/" );
++#endif
+ 
+     /* Names to use later for QSettings */
+     QCoreApplication::setApplicationName("Server for Pokeymon-Online");
