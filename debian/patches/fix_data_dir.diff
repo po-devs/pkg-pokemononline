@@ -1,32 +1,5 @@
 Description: Fix data path for deb package build
 Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
---- a/src/Teambuilder/Teambuilder.pro
-+++ b/src/Teambuilder/Teambuilder.pro
-@@ -204,8 +204,8 @@
-    QMAKE_POST_LINK += macdeployqt $${DESTDIR}/$${TARGET}.app
- }
- 
--CONFIG(debian) {
--    DEFINES += PO_DATA_REPO=\"/usr/share/games/pokemon-online/\"
-+CONFIG(debian_package) {
-+    DEFINES += DEB_PKG
- }
- 
- 
---- a/src/Teambuilder/main.cpp
-+++ b/src/Teambuilder/main.cpp
-@@ -66,8 +66,9 @@
-     QDir::setCurrent( path );
-     CFRelease(pluginRef);
-     CFRelease(macPath);
--#elif defined(PO_DATA_REPO)
--    QDir::setCurrent(PO_DATA_REPO);
-+#elif defined(DEB_PKG)
-+    QDir::setCurrent( "/usr/share/games/pokemon-online" );
-+    QCoreApplication::addLibraryPath ( "/usr/lib/pokemon-online" );
- #endif
- 
-     bool quit = false;
 --- a/src/Teambuilder/pluginmanager.cpp
 +++ b/src/Teambuilder/pluginmanager.cpp
 @@ -257,7 +257,11 @@
@@ -53,17 +26,3 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
  DESTDIR = ../../bin
  TEMPLATE = app
  SOURCES += main.cpp \
---- a/src/Server/main.cpp
-+++ b/src/Server/main.cpp
-@@ -51,6 +51,11 @@
- #else
-     //set_terminate( stacktrace );
- #endif
-+#if defined(DEB_PKG)
-+    QDir d(QDir::homePath());
-+    d.mkdir(".po-server");
-+    QDir::setCurrent( QDir::homePath() + "/.po-server/" );
-+#endif
- 
-     /* Names to use later for QSettings */
-     QCoreApplication::setApplicationName("Server for Pokeymon-Online");

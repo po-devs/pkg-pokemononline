@@ -1,0 +1,104 @@
+Description: fixed some paths for debian
+Author: coyotte508 <coyotte508@hotmail.com>
+--- a/src/Server/Server.pro
++++ b/src/Server/Server.pro
+@@ -103,7 +103,7 @@
+     ../Shared/battlecommands.h \
+     ../Utilities/coreclasses.h \
+     playerstructs.h \
+-    networkpo-utilities.h \
++    networkutilities.h \
+     battlebase.h \
+     battlerby.h \
+     rbymoves.h \
+@@ -157,3 +157,12 @@
+ 
+ FORMS += \
+     modswindow.ui
++
++CONFIG(debian_package) {
++    DEFINES += PO_DATA_REPO=\\\"/usr/share/games/pokemon-online/\\\"
++    DEFINES += PO_HOME_DIR=\\\"~/.po-server/\\\"
++}
++!CONFIG(debian_package) {
++    DEFINES += PO_DATA_REPO=\\\"./\\\"
++    DEFINES += PO_HOME_DIR=\\\"./\\\"
++}
+--- a/src/Server/main.cpp
++++ b/src/Server/main.cpp
+@@ -21,6 +21,8 @@
+ 
+ using namespace std;
+ 
++QString Server::dataRepo = QDir().absoluteFilePath(PO_DATA_REPO);
++
+ void myMessageOutput(QtMsgType type, const char *msg)
+ {
+     switch (type) {
+@@ -56,6 +58,10 @@
+     QCoreApplication::setApplicationName("Server for Pokeymon-Online");
+     QCoreApplication::setOrganizationName("Dreambelievers");
+ 
++    QDir d;
++    d.mkpath(PO_HOME_DIR);
++    QDir::setCurrent(PO_HOME_DIR);
++
+     //default: show a window
+     bool showWindow = true;
+ 
+--- a/src/Server/server.cpp
++++ b/src/Server/server.cpp
+@@ -306,18 +306,18 @@
+     PokemonInfoConfig::changeMod(mod);
+ 
+     /* Really useful for headless servers */
+-    GenInfo::init("db/gens/");
+-    PokemonInfo::init("db/pokes/");
+-    MoveSetChecker::init("db/pokes/");
+-    ItemInfo::init("db/items/");
+-    MoveInfo::init("db/moves/");
+-    TypeInfo::init("db/types/");
+-    NatureInfo::init("db/natures/");
+-    CategoryInfo::init("db/categories/");
+-    AbilityInfo::init("db/abilities/");
+-    HiddenPowerInfo::init("db/types/");
+-    StatInfo::init("db/status/");
+-    GenderInfo::init("db/genders/"); //needed by battlelogs plugin
++    GenInfo::init(dataRepo+"/db/gens/");
++    PokemonInfo::init(dataRepo+"/db/pokes/");
++    MoveSetChecker::init(dataRepo+"/db/pokes/");
++    ItemInfo::init(dataRepo+"/db/items/");
++    MoveInfo::init(dataRepo+"/db/moves/");
++    TypeInfo::init(dataRepo+"/db/types/");
++    NatureInfo::init(dataRepo+"/db/natures/");
++    CategoryInfo::init(dataRepo+"/db/categories/");
++    AbilityInfo::init(dataRepo+"/db/abilities/");
++    HiddenPowerInfo::init(dataRepo+"/db/types/");
++    StatInfo::init(dataRepo+"/db/status/");
++    GenderInfo::init(dataRepo+"/db/genders/"); //needed by battlelogs plugin
+ 
+     battleThread.unpause();
+ }
+--- a/src/Server/server.h
++++ b/src/Server/server.h
+@@ -84,6 +84,7 @@
+     bool canHaveRatedBattle(int id1, int id2, const TeamBattle &t1, const TeamBattle &t2, bool forceRated1 = false, bool forceRated2 = false);
+ 
+     static Server *serverIns;
++    static QString dataRepo;
+ 
+     BattleBase * getBattle(int battleId) const;
+ 
+--- a/src/Teambuilder/Teambuilder.pro
++++ b/src/Teambuilder/Teambuilder.pro
+@@ -204,8 +204,8 @@
+    QMAKE_POST_LINK += macdeployqt $${DESTDIR}/$${TARGET}.app
+ }
+ 
+-CONFIG(debian) {
+-    DEFINES += PO_DATA_REPO=\"/usr/share/games/pokemon-online/\"
++CONFIG(debian_package) {
++    DEFINES += PO_DATA_REPO=\\\"/usr/share/games/pokemon-online/\\\"
+ }
+ 
+ 
