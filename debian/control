@@ -175,7 +175,7 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          pokemon-online-data (= ${source:Version})
-#Suggests: pokemon-online-server-plugins
+Suggests: pokemon-online-server-plugins
 Description: Pokémon battle simulator (server)
  Pokémon Online is the most popular, accurate, and complete Pokémon battle
  simulator out there. Available in 11 languages with over 100 themes, it
@@ -199,3 +199,32 @@ Description: Pokémon battle simulator (server debug)
  in real time with trainers from around the world!
  .
  This package contains the debugging symbols for the server.
+
+Package: pokemon-online-server-plugins
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         pokemon-online-server (= ${source:Version})
+Description: Pokémon battle simulator (server plugins)
+ Pokémon Online is the most popular, accurate, and complete Pokémon battle
+ simulator out there. Available in 11 languages with over 100 themes, it
+ hosts more than a million battles per month. Experience competitive battles
+ across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2)
+ in real time with trainers from around the world!
+ .
+ These are the Pokémon Online server plugins.
+
+Package: pokemon-online-server-plugins-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: pokemon-online-server-plugins (= ${binary:Version}), 
+         ${misc:Depends}
+Description: Pokémon battle simulator (server plugins debug)
+ Pokémon Online is the most popular, accurate, and complete Pokémon battle
+ simulator out there. Available in 11 languages with over 100 themes, it
+ hosts more than a million battles per month. Experience competitive battles
+ across five generations (RBY/Stadium, GSC, RSE, DPPt/HGSS, and Black/White 2)
+ in real time with trainers from around the world!
+ .
+ This package contains the debugging symbols for the server plugins.

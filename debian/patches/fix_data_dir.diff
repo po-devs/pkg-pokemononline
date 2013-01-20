@@ -26,3 +26,17 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
  DESTDIR = ../../bin
  TEMPLATE = app
  SOURCES += main.cpp \
+--- a/src/Server/pluginmanager.cpp
++++ b/src/Server/pluginmanager.cpp
+@@ -204,7 +204,11 @@
+     QFileDialog *fd = new QFileDialog(this);
+     fd->setAttribute(Qt::WA_DeleteOnClose, true);
+     fd->setFileMode(QFileDialog::ExistingFile);
++#if defined(DEB_PKG)
++    fd->setDirectory("/usr/lib/pokemon-online/serverplugins");
++#else
+     fd->setDirectory("serverplugins");
++#endif
+     fd->show();
+ 
+     connect(fd, SIGNAL(fileSelected(QString)), this, SLOT(addPlugin(QString)));
