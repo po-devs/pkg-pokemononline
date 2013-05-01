@@ -2,7 +2,7 @@ Description: Fix data path for deb package build
 Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
 --- a/src/Teambuilder/pluginmanager.cpp
 +++ b/src/Teambuilder/pluginmanager.cpp
-@@ -257,7 +257,11 @@
+@@ -265,7 +265,11 @@
      QFileDialog *fd = new QFileDialog(this);
      fd->setAttribute(Qt::WA_DeleteOnClose, true);
      fd->setFileMode(QFileDialog::ExistingFile);
@@ -28,7 +28,7 @@ Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
  SOURCES += main.cpp \
 --- a/src/Server/pluginmanager.cpp
 +++ b/src/Server/pluginmanager.cpp
-@@ -204,7 +204,11 @@
+@@ -209,7 +209,11 @@
      QFileDialog *fd = new QFileDialog(this);
      fd->setAttribute(Qt::WA_DeleteOnClose, true);
      fd->setFileMode(QFileDialog::ExistingFile);
