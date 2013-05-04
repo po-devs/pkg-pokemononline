@@ -1,4 +1,2 @@
-bin/lib*.so /usr/lib
-bin/lib*.so.* /usr/lib
 bin/Pokemon-Online /usr/games
 debian/pokemon-online-client.desktop /usr/share/applications
