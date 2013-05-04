@@ -1,36 +1,42 @@
-Description: Fix data path for deb build
+Description: Fix data path for deb package build
 Author: Fabio Fantoni <fabio.fantoni@tiscali.it>
---- a/src/Teambuilder/Teambuilder.pro
-+++ b/src/Teambuilder/Teambuilder.pro
-@@ -204,7 +204,7 @@
- }
- 
- CONFIG(debian) {
--    DEFINES += -DPO_DATA_REPO="/usr/shared/games/pokemon-online/"
-+    DEFINES += PO_DATA_REPO=\"/usr/share/games/pokemon-online/\"
- }
- 
- 
---- a/src/Teambuilder/main.cpp
-+++ b/src/Teambuilder/main.cpp
-@@ -67,7 +67,8 @@
-     CFRelease(pluginRef);
-     CFRelease(macPath);
- #elif defined(PO_DATA_REPO)
--    QDir::setCurrent(PO_DATA_REPO);
-+    QDir::setCurrent( "/usr/share/games/pokemon-online" );
-+    QCoreApplication::addLibraryPath ( "/usr/lib/pokemon-online" );
- #endif
- 
-     bool quit = false;
 --- a/src/Teambuilder/pluginmanager.cpp
 +++ b/src/Teambuilder/pluginmanager.cpp
-@@ -216,7 +216,7 @@
+@@ -265,7 +265,11 @@
      QFileDialog *fd = new QFileDialog(this);
      fd->setAttribute(Qt::WA_DeleteOnClose, true);
      fd->setFileMode(QFileDialog::ExistingFile);
--    fd->setDirectory("myplugins");
-+    fd->setDirectory("/usr/lib/pokemon-online/plugins");
++#if defined(DEB_PKG)
++    fd->setDirectory("/usr/lib/pokemon-online/clientplugins");
++#else
+     fd->setDirectory("myplugins");
++#endif
+     fd->show();
+ 
+     connect(fd, SIGNAL(fileSelected(QString)), this, SLOT(addPlugin(QString)));
+--- a/src/Server/Server.pro
++++ b/src/Server/Server.pro
+@@ -5,7 +5,8 @@
+     script \
+     xml \
+     sql
+-TARGET = Server
++CONFIG(debian_package): TARGET = Pokemon-Online-Server
++!CONFIG(debian_package): TARGET = Server
+ DESTDIR = ../../bin
+ TEMPLATE = app
+ SOURCES += main.cpp \
+--- a/src/Server/pluginmanager.cpp
++++ b/src/Server/pluginmanager.cpp
+@@ -209,7 +209,11 @@
+     QFileDialog *fd = new QFileDialog(this);
+     fd->setAttribute(Qt::WA_DeleteOnClose, true);
+     fd->setFileMode(QFileDialog::ExistingFile);
++#if defined(DEB_PKG)
++    fd->setDirectory("/usr/lib/pokemon-online/serverplugins");
++#else
+     fd->setDirectory("serverplugins");
++#endif
      fd->show();
  
      connect(fd, SIGNAL(fileSelected(QString)), this, SLOT(addPlugin(QString)));

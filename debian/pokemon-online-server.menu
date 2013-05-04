@@ -1,0 +1,1 @@
+?package(pokemon-online-server):needs="x11" section="Games/Strategy" title="Pokémon Online server" command="/usr/games/Pokemon-Online-Server"

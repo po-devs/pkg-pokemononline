@@ -1,5 +1,5 @@
-pokemon-online (2.0.07-1) UNRELEASED; urgency=low
+pokemon-online (2.0.22-1) UNRELEASED; urgency=low
 
-  * Initial release. (Closes: #696639)
+  * Initial release. (Closes: #696693)
 
- -- Fabio Fantoni <fantonifabio@tiscali.it>  Sun, 23 Dec 2012 16:22:12 +0100
+ -- Fabio Fantoni <fantonifabio@tiscali.it>  Sat, 04 May 2013 18:06:26 +0200
